@@ -16,6 +16,6 @@ This folder contains the files related to the processing of the spectra:
 This folder contains the files related to the analytical modelling of the data ("astrosticks + spheres" model):
 - .csv files containing the signal attenuations and ADCs at long diffusion times coming from the LCModel quantification
 - Jupyter notebook containing the code (DIVE is needed as indicated in the header of the notebook): dMRS_neonate_astrosticks-and-spheres.ipynb
-- Outputs/ contains the .csv files produced by the analysis (hence the ** "Fitting Data" ** step of the notebook can be ignored)
+- Outputs/ contains the .csv files produced by the analysis (hence the **"Fitting Data"** step of the notebook can be ignored)
 
 
