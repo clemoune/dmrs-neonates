@@ -2,7 +2,7 @@
 
 This folder contains the scripts used to process the Bruker raw data (Paravision 360.1).
 
-The main script is *Protocol_reading_pups.m*, it calls the others scripts *BSB_...*. You 
+The main script is *Protocol_reading_pups.m*, it calls the others scripts *BSB_...*.  
 
 The script *BSB_HighB_Pups.m* processes the data acquired at high b values, it includes the DKI-based outliers suppression.
 The script *BSB_LongTM_Pups.m* processes the data acquired at long diffusion times. The call to the script *BSB_PhaseEstimated.m* is needed the high b-values & the long diffusion times data are not treated simulataneously.
