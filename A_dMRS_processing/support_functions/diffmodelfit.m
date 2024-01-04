@@ -1,4 +1,8 @@
 function res=diffmodelfit(y,v,b,m,n)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Author: Saad Jbabdi 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 % results=diffmodelfit(data,bvecs,bvals,model,[numfib=2])
 % data is NxT 
 % bvecs is 3xT
