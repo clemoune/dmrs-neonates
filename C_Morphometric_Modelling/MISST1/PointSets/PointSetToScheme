@@ -1,0 +1,55 @@
+: # auto find perl code.
+     eval 'exec perl -S $0 "$@"'
+     if 0;
+
+
+# Reads a list of gradient directions with format
+# N
+# x1 
+# y1
+# z1
+# x2
+# y2
+# z2
+# :
+# xN
+# yN
+# zN
+# and outputs the points formatted as a scheme file for Camino.
+#
+# Usage: PointSetToScheme <input file> <modQ> <diffusion time>
+#
+# modQ = sqrt(b/t), t is the diffusion time.
+#
+# $Id: PointSetToScheme,v 1.2 2006/03/08 17:00:49 ucacdxa Exp $
+
+$pointsFile = shift || die "I need an input file.\nUsage:  PointSetToScheme <input file> <modQ> <M> <diffusion time>";
+$modQ = shift || die "I need modQ.\nUsage:  PointSetToScheme <input file> <modQ> <M> <diffusion time>";
+$M = shift || die "I need M (number of b=0 measurements).\nUsage:  PointSetToScheme <input file> <modQ> <M> <diffusion time>";
+$tau = shift || die "I need the diffusion time.\nUsage:  PointSetToScheme <input file> <modQ> <M> <diffusion time>";
+
+open(POINTSFILE, $pointsFile);
+
+print "$tau\n";
+
+$s = 0;
+while(<POINTSFILE>) {
+
+    if($s == 0 && /\s*([0-9e\-\.]+)/) {
+	$N = $1;
+	print $N+$M;
+	print "\n";
+        for($i=0; $i<$M; $i++) {
+            print "0.000\n0.000\n0.000\n";
+        }
+
+	$s = 1;
+    }
+    else {
+	if(/\s*([0-9e\-\.]+)/) {
+            print sprintf("%8.3f\n",($modQ*$1));
+        }
+    }
+}
+
+close(POINTSFILE);
