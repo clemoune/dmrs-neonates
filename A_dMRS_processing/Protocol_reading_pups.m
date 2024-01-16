@@ -5,6 +5,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % DataType is 'highb' OR 'longtm'
+
 DataType='highb' 
 addpath('support_functions/')
 data_nb_dir='/vols/Data/preclinical/Clemence/Purkinje_SeedGrant/';
@@ -12,14 +13,14 @@ Litter=[1 2 3];
 Age=[5 10 15 20 30];
 Pup=[1:7];
 
-for litcounter=1:size(Litter,2)
+for litcounter=2; %1:size(Litter,2)
     
-    for agecounter=1:size(Age,2)
+    for agecounter=3; %1:size(Age,2)
 
-        for puppi=1:size(Pup,2)
+        for puppi=5; %1:size(Pup,2)
     
     close all
-    clearvars -except data_nb_dir Pup puppi Litter litcounter Age agecounter
+    clearvars -except data_nb_dir Pup puppi Litter litcounter Age agecounter DataType
     clc
 
     tic    

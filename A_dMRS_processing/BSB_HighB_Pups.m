@@ -5,6 +5,10 @@
 % Script structure:
 % 1 - Definitions: preparing data.
 % 2 - Uploading files, combining coils.
+%%%% Possible to run the analysis from steps 3 to 6C, you can load 
+%%%% individual pup's data from the 'MatDataLight' folder. 
+%%%% Load the 'ReorderedLight.mat'.
+%%%%  You will be able to run steps 3 to 6C. 
 % 3 - Calculating the mean upfield Mup(i) signal for each transient i
 % 4 - Estimating diffusion & kurtosis tensors from all data
 % 5 - Calculating the median and MAD at the b-value level
@@ -50,14 +54,14 @@ Number_Acq=size(protocol,2);
 for i=1:Number_Acq
     if ischar(protocol(i).type)==1
         
-    if ((matches(protocol(i).type,'User:cl_STELASER_PA360_b')==1) && (protocol(i).TM==50) && (protocol(i).Nb_Repetitions==18) && matches(protocol(i).WaterSup,'VAPOR')==1)      
+    if ((matches(protocol(i).type,'User:cl_STELASER_PA360_b')==1) && (protocol(i).TM==100) && (protocol(i).Nb_Repetitions==18) && matches(protocol(i).WaterSup,'VAPOR')==1)      
  Acquisitions=[Acquisitions i]; 
  b_values=double(string(split(extractBefore(protocol(i).b_value,' @'))));
  Nb_Repetitions_per_b=double(string(split(extractBefore(protocol(i).rep_per_b,' @'))));
     end
 
         
-        if ((matches(protocol(i).type,'User:cl_STELASER_PA360_b')==1) && (protocol(i).TM==50) && (protocol(i).Nb_Repetitions==18) && matches(protocol(i).WaterSup,'NO_SUPPRESSION')==1)      
+        if ((matches(protocol(i).type,'User:cl_STELASER_PA360_b')==1) && (protocol(i).TM==100) && (protocol(i).Nb_Repetitions==18) && matches(protocol(i).WaterSup,'NO_SUPPRESSION')==1)      
         Acquisitions_water=[Acquisitions_water i]; 
         end        
     end
@@ -165,6 +169,9 @@ clearvars -except FolderNames data_nb_dir fold Data_Dir Number_Acq protocol Name
 % also calculating the downfield signal (approximation of noise) and its STD 
 % derive SNR/transient
 
+%%%% If starting the analysis here, you can load individual pup's data from
+%%%% the 'MatDataLight' folder. Load the 'ReorderedLight.mat'. You will be
+%%%% able to run steps 3 to 6C. 
 
 range=[390:940];
 range_downfield=[390:940]+1000;
@@ -289,8 +296,8 @@ DKI_pred=figure
 plot(ReorderedMean,'k')
 hold on 
 plot(Reordered(6).DKI.pred)
-name_fig=strcat(ProcessedFolder,filesep,'DKIpred.fig');
-savefig(DKI_pred, name_fig)
+%name_fig=strcat(ProcessedFolder,filesep,'DKIpred.fig');
+%savefig(DKI_pred, name_fig)
 
 
 for bv=1:6
@@ -414,8 +421,8 @@ DKIBV_pred=figure
 plot(ReorderedMeanBV,'k')
 hold on 
 plot(Reordered(6).DKIBV.pred)
-name_fig=strcat(ProcessedFolder,filesep,'DKIBVpred.fig');
-savefig(DKIBV_pred, name_fig)
+%name_fig=strcat(ProcessedFolder,filesep,'DKIBVpred.fig');
+%savefig(DKIBV_pred, name_fig)
 
 for i=2:6
  Reordered(i).DKIBV.FA
@@ -573,8 +580,8 @@ for bv=1:6
     histogram(Reordered(bv).OutliersDKI.SortedMeanSignal,'FaceColor',coloursHist(bv,:),'EdgeColor','none','BinWidth',FactorMAD*Reordered(1).MAD/20)
 end
 
-name_fig=strcat(ProcessedFolder,filesep,'HistogramDKI.fig');
-savefig(fDKI, name_fig)
+%name_fig=strcat(ProcessedFolder,filesep,'HistogramDKI.fig');
+%savefig(fDKI, name_fig)
 
 %% 6D - Outlier detection based on the DKI prediction following 6A | median & MAD(bv=0)
 
