@@ -1,6 +1,6 @@
 # dmrs-neonates
 
-Code coming with the bioRxiv: https://www.biorxiv.org/content/10.1101/2023.10.16.562599v1
+Code related to the article "Diffusion MRS tracks distinct trajectories of neuronal development in the cerebellum and thalamus of rat neonates" (eLife2025;13:RP96625 DOI: https://doi.org/10.7554/eLife.96625.4).
 
 ## A_dMRS_processing/
 
